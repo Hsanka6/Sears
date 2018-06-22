@@ -16,13 +16,16 @@ import java.util.ArrayList;
 
 import static com.sears.android.dlm.MainActivity.getHori;
 import static com.sears.android.dlm.MainActivity.getVert;
+import static com.sears.android.dlm.MainActivity.getVert1;
 
 public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private Context c;
     private ArrayList<Object> items;
     private final int V = 1;
+    private final int W = 3;
     private final int H = 2;
+
 
     public MainAdapter(Context c, ArrayList<Object> items) {
         this.c = c;
@@ -43,6 +46,10 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 view = inflater.inflate(R.layout.horizontal,parent,false);
                 holder = new HorizontalViewHolder(view);
                 break;
+            case W:
+                view = inflater.inflate(R.layout.vertical,parent,false);
+                holder = new VerticalViewHolder1(view);
+                break;
             default:
                 view = inflater.inflate(R.layout.vertical, parent, false);
                 holder = new HorizontalViewHolder(view);
@@ -57,11 +64,19 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             verticalView((VerticalViewHolder) holder);
         else if(holder.getItemViewType() == H)
             horizontalView((HorizontalViewHolder) holder);
+        else if(holder.getItemViewType() == W)
+            verticalView1((VerticalViewHolder1) holder);
 
     }
 
     private void verticalView(VerticalViewHolder holder){
         VerticalAdapter adapter = new VerticalAdapter(getVert());
+        holder.recyclerView.setLayoutManager(new LinearLayoutManager(c, LinearLayoutManager.VERTICAL,false));
+        holder.recyclerView.setAdapter(adapter);
+    }
+
+    private void verticalView1(VerticalViewHolder1 holder){
+        VerticalAdapter adapter = new VerticalAdapter(getVert1());
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(c, LinearLayoutManager.VERTICAL,false));
         holder.recyclerView.setAdapter(adapter);
     }
@@ -80,11 +95,15 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public int getItemViewType(int position) {
-        if(items.get(position) instanceof VerticalModel)
+        if((position) == 2)
+        {
+            return W;
+        }
+        if((position) == 0)
         {
             return V;
         }
-        if(items.get(position) instanceof HorizontalModel)
+        if((position) == 1)
         {
             return H;
         }
@@ -105,6 +124,15 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         RecyclerView recyclerView;
 
         public VerticalViewHolder(View itemView) {
+            super(itemView);
+            recyclerView = itemView.findViewById(R.id.innerRecylerView);
+        }
+    }
+
+    public class VerticalViewHolder1 extends RecyclerView.ViewHolder {
+        RecyclerView recyclerView;
+
+        public VerticalViewHolder1(View itemView) {
             super(itemView);
             recyclerView = itemView.findViewById(R.id.innerRecylerView);
         }

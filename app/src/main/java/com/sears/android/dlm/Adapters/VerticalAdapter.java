@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.sears.android.dlm.Models.VerticalModel;
 import com.sears.android.dlm.R;
@@ -27,6 +28,15 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.MyView
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.im.setImageResource(d.get(position).getImage());
+        if(d.get(position).isNoTitle())
+        {
+            holder.title.setText(d.get(position).getTitle());
+            holder.im.setVisibility(View.GONE);
+        }
+        else
+        {
+            holder.title.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -36,9 +46,12 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView im;
+        TextView title;
+        Boolean isTitle;
         public MyViewHolder(View itemView) {
             super(itemView);
             im = itemView.findViewById(R.id.image);
+            title = itemView.findViewById(R.id.bannerTitle);
         }
     }
 }

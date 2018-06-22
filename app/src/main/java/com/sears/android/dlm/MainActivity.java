@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Object> getObject() {
         objects.add(getVert().get(0));
         objects.add(getHori().get(0));
-        objects.add(getVert().get(0));
+        objects.add(getVert1().get(0));
         return objects;
     }
 
@@ -47,17 +47,19 @@ public class MainActivity extends AppCompatActivity {
 
     public static ArrayList<VerticalModel> getVert() {
         ArrayList<VerticalModel>vert = new ArrayList<>();
-        vert.add(new VerticalModel(R.mipmap.ic_launcher));
-        vert.add(new VerticalModel(R.mipmap.ic_launcher));
+        vert.add(new VerticalModel(R.mipmap.ic_launcher,"", false));
+        vert.add(new VerticalModel(R.mipmap.ic_launcher,"", false));
+        vert.add(new VerticalModel(R.mipmap.ic_launcher,"Sponsored", true));
 
-        vert.add(new VerticalModel(R.mipmap.ic_launcher));
-        vert.add(new VerticalModel(R.mipmap.ic_launcher));
-        vert.add(new VerticalModel(R.mipmap.ic_launcher));
+        return vert;
+    }
 
-        vert.add(new VerticalModel(R.mipmap.ic_launcher));
-        vert.add(new VerticalModel(R.mipmap.ic_launcher));
-        vert.add(new VerticalModel(R.mipmap.ic_launcher));
-        vert.add(new VerticalModel(R.mipmap.ic_launcher));
+    public static ArrayList<VerticalModel> getVert1() {
+        ArrayList<VerticalModel>vert = new ArrayList<>();
+        vert.add(new VerticalModel(R.mipmap.ic_launcher,"", false));
+        vert.add(new VerticalModel(R.mipmap.ic_launcher,"", false));
+        vert.add(new VerticalModel(R.mipmap.ic_launcher,"Department", true));
+
         return vert;
     }
 }
