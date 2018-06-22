@@ -11,20 +11,23 @@ import android.widget.LinearLayout;
 import com.sears.android.dlm.Models.HorizontalModel;
 import com.sears.android.dlm.Models.VerticalModel;
 import com.sears.android.dlm.R;
+import com.synnapps.carouselview.CarouselView;
 
 import java.util.ArrayList;
 
 import static com.sears.android.dlm.MainActivity.getHori;
 import static com.sears.android.dlm.MainActivity.getVert;
 import static com.sears.android.dlm.MainActivity.getVert1;
+import static com.sears.android.dlm.MainActivity.getCar;
 
 public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private Context c;
     private ArrayList<Object> items;
     private final int V = 1;
-    private final int W = 3;
     private final int H = 2;
+    private final int C = 4;
+
 
 
     public MainAdapter(Context c, ArrayList<Object> items) {
@@ -46,9 +49,10 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 view = inflater.inflate(R.layout.horizontal,parent,false);
                 holder = new HorizontalViewHolder(view);
                 break;
-            case W:
-                view = inflater.inflate(R.layout.vertical,parent,false);
-                holder = new VerticalViewHolder1(view);
+
+            case C:
+                view = inflater.inflate(R.layout.vertical,parent, false);
+                holder = new CarouselViewHolder(view);
                 break;
             default:
                 view = inflater.inflate(R.layout.vertical, parent, false);
@@ -64,8 +68,8 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             verticalView((VerticalViewHolder) holder);
         else if(holder.getItemViewType() == H)
             horizontalView((HorizontalViewHolder) holder);
-        else if(holder.getItemViewType() == W)
-            verticalView1((VerticalViewHolder1) holder);
+        else if(holder.getItemViewType() == C)
+            carouselView((CarouselViewHolder) holder);
 
     }
 
@@ -75,11 +79,13 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         holder.recyclerView.setAdapter(adapter);
     }
 
-    private void verticalView1(VerticalViewHolder1 holder){
-        VerticalAdapter adapter = new VerticalAdapter(getVert1());
+    private void carouselView(CarouselViewHolder holder){
+        CarouselAdapter adapter = new CarouselAdapter(getCar());
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(c, LinearLayoutManager.VERTICAL,false));
         holder.recyclerView.setAdapter(adapter);
     }
+
+
 
 
     private void horizontalView(HorizontalViewHolder holder){
@@ -95,17 +101,17 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public int getItemViewType(int position) {
-        if((position) == 2)
-        {
-            return W;
-        }
-        if((position) == 0)
+        if((position) == 1)
         {
             return V;
         }
-        if((position) == 1)
+        if((position) == 2)
         {
             return H;
+        }
+        if((position) == 0)
+        {
+            return C;
         }
         return -1;
     }
@@ -119,6 +125,14 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
     }
 
+    public class CarouselViewHolder extends RecyclerView.ViewHolder {
+        RecyclerView recyclerView;
+
+        public CarouselViewHolder(View itemView) {
+            super(itemView);
+            recyclerView = itemView.findViewById(R.id.innerRecylerView);
+        }
+    }
 
     public class VerticalViewHolder extends RecyclerView.ViewHolder {
         RecyclerView recyclerView;
@@ -129,12 +143,5 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
     }
 
-    public class VerticalViewHolder1 extends RecyclerView.ViewHolder {
-        RecyclerView recyclerView;
 
-        public VerticalViewHolder1(View itemView) {
-            super(itemView);
-            recyclerView = itemView.findViewById(R.id.innerRecylerView);
-        }
-    }
 }

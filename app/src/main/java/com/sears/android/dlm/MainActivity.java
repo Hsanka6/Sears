@@ -4,17 +4,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
 
 import com.sears.android.dlm.Adapters.MainAdapter;
+import com.sears.android.dlm.Models.CarouselModel;
 import com.sears.android.dlm.Models.HorizontalModel;
 import com.sears.android.dlm.Models.VerticalModel;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    String[] Items={"item 0","item 1","item 2","item 3","item 4","item 5","item 6","item 7","item 8","item 9",};
+    CarouselView carouselView;
+
     //ArrayList<View> views = new ArrayList<>();
+    static int[] sampleImages = {R.drawable.ic_launcher_background, R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_background,};
 
     private ArrayList<Object> objects = new ArrayList<>();
     @Override
@@ -24,14 +30,28 @@ public class MainActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MainAdapter(this,getObject()));
+
+//        carouselView = (CarouselView) findViewById(R.id.carouselView);
+//        carouselView.setPageCount(sampleImages.length);
+//
+//        carouselView.setImageListener(imageListener);
     }
 
+    ImageListener imageListener = new ImageListener() {
+        @Override
+        public void setImageForPosition(int position, ImageView imageView) {
+            imageView.setImageResource(sampleImages[position]);
+        }
+    };
+
     private ArrayList<Object> getObject() {
+        objects.add(getCar().get(0));
         objects.add(getVert().get(0));
         objects.add(getHori().get(0));
         objects.add(getVert1().get(0));
         return objects;
     }
+
 
     public static ArrayList<HorizontalModel> getHori() {
         ArrayList<HorizontalModel>hori = new ArrayList<>();
@@ -45,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
         return hori;
     }
 
+    public static ArrayList<CarouselModel> getCar() {
+        ArrayList<CarouselModel>car = new ArrayList<>();
+        car.add(new CarouselModel(sampleImages));
+        return car;
+    }
     public static ArrayList<VerticalModel> getVert() {
         ArrayList<VerticalModel>vert = new ArrayList<>();
         vert.add(new VerticalModel(R.mipmap.ic_launcher,"", false));
