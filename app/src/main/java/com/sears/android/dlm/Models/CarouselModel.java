@@ -1,18 +1,18 @@
 package com.sears.android.dlm.Models;
 
 public class CarouselModel {
-    public int[] getSampleImages() {
+    public String[] getSampleImages() {
         return sampleImages;
     }
 
-    public void setSampleImages(int[] sampleImages) {
+    public void setSampleImages(String[] sampleImages) {
         this.sampleImages = sampleImages;
     }
 
-    public CarouselModel(int[] sampleImages) {
+    public CarouselModel(String[] sampleImages) {
         this.sampleImages = sampleImages;
     }
 
-    private int[] sampleImages;
+    private String[] sampleImages;
 
 }

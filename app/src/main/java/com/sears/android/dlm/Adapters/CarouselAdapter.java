@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.sears.android.dlm.Models.CarouselModel;
 import com.sears.android.dlm.Models.HorizontalModel;
 import com.sears.android.dlm.R;
+import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -39,8 +40,10 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.MyView
         holder.carouselView.setImageListener(new ImageListener() {
             @Override
             public void setImageForPosition(int position, ImageView imageView) {
-                Log.e(TAG, String.valueOf(d.get(0).getSampleImages().length));
-                imageView.setImageResource(d.get(0).getSampleImages()[position]);
+                Log.e(TAG, String.valueOf(d.get(0).getSampleImages()[0]));
+                //imageView.setImageResource(d.get(0).getSampleImages()[position]);
+                Picasso.get().load(d.get(0).getSampleImages()[position]).into(imageView);
+                //CarouselAdapter.this.notifyDataSetChanged();
             }
         });
 

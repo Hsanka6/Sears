@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
     CarouselView carouselView;
 
     //ArrayList<View> views = new ArrayList<>();
-    static int[] sampleImages = {R.drawable.ic_launcher_background, R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_background,};
+    static String a = "https://placeholdit.imgix.net/~text?txtsize=15&txt=image1&txt=350%C3%97150&w=350&h=150";
+    static String[] sampleImages = {a, a, a};
 
     private ArrayList<Object> objects = new ArrayList<>();
     @Override
@@ -37,12 +38,7 @@ public class MainActivity extends AppCompatActivity {
 //        carouselView.setImageListener(imageListener);
     }
 
-    ImageListener imageListener = new ImageListener() {
-        @Override
-        public void setImageForPosition(int position, ImageView imageView) {
-            imageView.setImageResource(sampleImages[position]);
-        }
-    };
+
 
     private ArrayList<Object> getObject() {
         objects.add(getCar().get(0));
