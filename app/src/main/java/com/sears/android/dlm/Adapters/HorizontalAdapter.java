@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.sears.android.dlm.Models.HorizontalModel;
 import com.sears.android.dlm.R;
+import com.sears.android.dlmlibrary.DlmProductView;
 
 import java.util.ArrayList;
 
@@ -29,9 +30,10 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.My
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.title.setText(d.get(position).getTitle());
-        holder.price.setText(d.get(position).getPrice());
-        holder.im.setImageResource(d.get(position).getImage());
+//        holder.title.setText(d.get(position).getTitle());
+//        holder.price.setText(d.get(position).getPrice());
+//        holder.im.setImageResource(d.get(position).getImage());
+        holder.dlm.setProductText(d.get(position).getTitle());
 
     }
 
@@ -42,14 +44,16 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.My
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView title,price;
-        ImageView im;
+//        TextView title,price;
+//        ImageView im;
+        DlmProductView dlm;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.titleText);
-            price = itemView.findViewById(R.id.priceText);
-            im = itemView.findViewById(R.id.productImage);
+//            title = itemView.findViewById(R.id.titleText);
+//            price = itemView.findViewById(R.id.priceText);
+//            im = itemView.findViewById(R.id.productImage);
+            dlm = itemView.findViewById(R.id.product);
         }
     }
 }

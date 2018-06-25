@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.sears.android.dlm.Adapters.MainAdapter;
 import com.sears.android.dlm.Models.CarouselModel;
 import com.sears.android.dlm.Models.HorizontalModel;
@@ -20,8 +21,9 @@ public class MainActivity extends AppCompatActivity {
     CarouselView carouselView;
 
     //ArrayList<View> views = new ArrayList<>();
-    static String a = "https://placeholdit.imgix.net/~text?txtsize=15&txt=image1&txt=350%C3%97150&w=350&h=150";
+    static String a = "http://i.imgur.com/DvpvklR.png";
     static String[] sampleImages = {a, a, a};
+   
 
     private ArrayList<Object> objects = new ArrayList<>();
     @Override
@@ -31,11 +33,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MainAdapter(this,getObject()));
-
-//        carouselView = (CarouselView) findViewById(R.id.carouselView);
-//        carouselView.setPageCount(sampleImages.length);
-//
-//        carouselView.setImageListener(imageListener);
     }
 
 
