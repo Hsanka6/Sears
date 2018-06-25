@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     //ArrayList<View> views = new ArrayList<>();
     static String a = "http://i.imgur.com/DvpvklR.png";
     static String[] sampleImages = {a, a, a};
-   
+    ImageView iv;
+
 
     private ArrayList<Object> objects = new ArrayList<>();
     @Override
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MainAdapter(this,getObject()));
+
     }
 
 
