@@ -1,13 +1,16 @@
 package com.sears.android.dlm.Adapters;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 
+import com.sears.android.dlm.MainActivity;
 import com.sears.android.dlm.Models.HorizontalModel;
 import com.sears.android.dlm.Models.VerticalModel;
 import com.sears.android.dlm.R;
@@ -19,6 +22,7 @@ import static com.sears.android.dlm.MainActivity.getHori;
 import static com.sears.android.dlm.MainActivity.getVert;
 import static com.sears.android.dlm.MainActivity.getVert1;
 import static com.sears.android.dlm.MainActivity.getCar;
+import static com.sears.android.dlm.MainActivity.getGri;
 
 public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
@@ -27,6 +31,8 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private final int V = 1;
     private final int H = 2;
     private final int C = 4;
+    private final int G = 3;
+    
 
 
 
@@ -49,7 +55,10 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 view = inflater.inflate(R.layout.horizontal,parent,false);
                 holder = new HorizontalViewHolder(view);
                 break;
-
+            case G:
+                view = inflater.inflate(R.layout.vertical,parent,false);
+                holder = new GridViewHolder(view);
+                break;
             case C:
                 view = inflater.inflate(R.layout.vertical,parent, false);
                 holder = new CarouselViewHolder(view);
@@ -70,6 +79,8 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             horizontalView((HorizontalViewHolder) holder);
         else if(holder.getItemViewType() == C)
             carouselView((CarouselViewHolder) holder);
+        else if(holder.getItemViewType() == G)
+            gridView((GridViewHolder) holder);
 
     }
 
@@ -85,6 +96,14 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         holder.recyclerView.setAdapter(adapter);
     }
 
+    private void gridView(GridViewHolder holder){
+        GridAdapter adapter = new GridAdapter(getGri().get(0).getNameList(), getGri().get(0).getIconId());
+        holder.recyclerView.setLayoutManager(new GridLayoutManager(c,3));
+        holder.recyclerView.setHasFixedSize(true);
+       // holder.recyclerView.setLayoutManager(new GridLayoutManager(c, LinearLayoutManager.VERTICAL,false));
+
+        holder.recyclerView.setAdapter(adapter);
+    }
 
 
 
@@ -113,8 +132,14 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return C;
         }
+        if((position) == 3)
+        {
+            return G;
+        }
         return -1;
     }
+
+
 
     public class HorizontalViewHolder extends RecyclerView.ViewHolder {
         RecyclerView recyclerView;
@@ -129,6 +154,15 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         RecyclerView recyclerView;
 
         public CarouselViewHolder(View itemView) {
+            super(itemView);
+            recyclerView = itemView.findViewById(R.id.innerRecylerView);
+        }
+    }
+
+    public class GridViewHolder extends RecyclerView.ViewHolder {
+        RecyclerView recyclerView;
+
+        public GridViewHolder(View itemView) {
             super(itemView);
             recyclerView = itemView.findViewById(R.id.innerRecylerView);
         }
