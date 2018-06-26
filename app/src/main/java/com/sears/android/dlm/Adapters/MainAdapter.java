@@ -19,8 +19,10 @@ import com.synnapps.carouselview.CarouselView;
 import java.util.ArrayList;
 
 import static com.sears.android.dlm.MainActivity.getHori;
+import static com.sears.android.dlm.MainActivity.getHori1;
 import static com.sears.android.dlm.MainActivity.getVert;
 import static com.sears.android.dlm.MainActivity.getVert1;
+import static com.sears.android.dlm.MainActivity.getVer;
 import static com.sears.android.dlm.MainActivity.getCar;
 import static com.sears.android.dlm.MainActivity.getGri;
 
@@ -33,6 +35,9 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private final int C = 4;
     private final int G = 3;
     private final int D = 5;
+    private final int Re = 6;
+    private final int H_1 = 7;
+
 
 
 
@@ -68,6 +73,14 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 view = inflater.inflate(R.layout.vertical,parent, false);
                 holder = new VerticalViewHolder(view);
                 break;
+            case Re:
+                view = inflater.inflate(R.layout.vertical,parent, false);
+                holder = new VerticalViewHolder(view);
+                break;
+            case H_1:
+                view = inflater.inflate(R.layout.horizontal,parent,false);
+                holder = new HorizontalViewHolder(view);
+                break;
             default:
                 view = inflater.inflate(R.layout.vertical, parent, false);
                 holder = new HorizontalViewHolder(view);
@@ -88,6 +101,10 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             gridView((GridViewHolder) holder);
         else if(holder.getItemViewType() == D)
             verticalView1((VerticalViewHolder) holder);
+        else if(holder.getItemViewType() == Re)
+            verticalView2((VerticalViewHolder) holder);
+        else if(holder.getItemViewType() == H_1)
+            horizontalView1((HorizontalViewHolder) holder);
 
     }
 
@@ -103,6 +120,12 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         holder.recyclerView.setAdapter(adapter);
     }
 
+    private void verticalView2(VerticalViewHolder holder){
+        VerticalAdapter adapter = new VerticalAdapter(getVer());
+        holder.recyclerView.setLayoutManager(new LinearLayoutManager(c, LinearLayoutManager.VERTICAL,false));
+        holder.recyclerView.setAdapter(adapter);
+    }
+
     private void carouselView(CarouselViewHolder holder){
         CarouselAdapter adapter = new CarouselAdapter(getCar());
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(c, LinearLayoutManager.VERTICAL,false));
@@ -114,11 +137,14 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         holder.recyclerView.setLayoutManager(new GridLayoutManager(c,3));
         holder.recyclerView.setHasFixedSize(true);
        // holder.recyclerView.setLayoutManager(new GridLayoutManager(c, LinearLayoutManager.VERTICAL,false));
-
         holder.recyclerView.setAdapter(adapter);
     }
 
-
+    private void horizontalView1(HorizontalViewHolder holder){
+        HorizontalAdapter adapter = new HorizontalAdapter(getHori1());
+        holder.recyclerView.setLayoutManager(new LinearLayoutManager(c, LinearLayoutManager.HORIZONTAL,false));
+        holder.recyclerView.setAdapter(adapter);
+    }
 
     private void horizontalView(HorizontalViewHolder holder){
         HorizontalAdapter adapter = new HorizontalAdapter(getHori());
@@ -135,9 +161,17 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public int getItemViewType(int position) {
         if((position) == 1)
         {
-            return V;
+            return Re;
         }
         if((position) == 2)
+        {
+            return H_1;
+        }
+        if((position) == 3)
+        {
+            return V;
+        }
+        if((position) == 4)
         {
             return H;
         }
@@ -145,11 +179,11 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return C;
         }
-        if((position) == 4)
+        if((position) == 6)
         {
             return G;
         }
-        if((position) == 3)
+        if((position) == 5)
         {
             return D;
         }

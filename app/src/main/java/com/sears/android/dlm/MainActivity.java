@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Object> getObject() {
         objects.add(getCar().get(0));
+        objects.add(getVer().get(0));
+        objects.add(getHori1().get(0));
         objects.add(getVert().get(0));
         objects.add(getHori().get(0));
         objects.add(getVert1().get(0));
@@ -71,6 +73,16 @@ public class MainActivity extends AppCompatActivity {
         hori.add(new HorizontalModel(a,"handbag", "$100.00", true, "$50"));
         hori.add(new HorizontalModel(a,"Adidas Shoes", "$100.00", true, "$50"));
         hori.add(new HorizontalModel(a,"Shoes", "$100.00", false, "$50"));
+
+        return hori;
+    }
+
+    public static ArrayList<HorizontalModel> getHori1() {
+        ArrayList<HorizontalModel>hori = new ArrayList<>();
+        hori.add(new HorizontalModel(a,"Jeans", "$100.00", false, "$50"));
+        hori.add(new HorizontalModel(a,"Shirts", "$100.00", true, "$50"));
+        hori.add(new HorizontalModel(a,"Long Sleeves", "$100.00", true, "$50"));
+        hori.add(new HorizontalModel(a,"Belts", "$100.00", false, "$50"));
 
         return hori;
     }
@@ -125,6 +137,13 @@ public class MainActivity extends AppCompatActivity {
         car.add(new CarouselModel(sampleImages));
         return car;
     }
+    public static ArrayList<VerticalModel> getVer() {
+        ArrayList<VerticalModel>vert = new ArrayList<>();
+        vert.add(new VerticalModel(b,"Recommended Items", true));
+
+        return vert;
+    }
+
     public static ArrayList<VerticalModel> getVert() {
         ArrayList<VerticalModel>vert = new ArrayList<>();
         vert.add(new VerticalModel(b,"", false));
