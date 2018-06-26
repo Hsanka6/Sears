@@ -67,12 +67,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static ArrayList<HorizontalModel> getHori() {
         ArrayList<HorizontalModel>hori = new ArrayList<>();
-        hori.add(new HorizontalModel(R.drawable.ic_launcher_background,"Shoes", "$100.00"));
-        hori.add(new HorizontalModel(R.drawable.ic_launcher_background,"Shoes 2", "$300.00"));
-        hori.add(new HorizontalModel(R.drawable.ic_launcher_background,"Shoes", "$100.00"));
-        hori.add(new HorizontalModel(R.drawable.ic_launcher_background,"Shoes 2", "$300.00"));
-        hori.add(new HorizontalModel(R.drawable.ic_launcher_background,"Shoes", "$100.00"));
-        hori.add(new HorizontalModel(R.drawable.ic_launcher_background,"Shoes 2", "$300.00"));
+        hori.add(new HorizontalModel(a,"Shoes", "$100.00", false, "$50"));
+        hori.add(new HorizontalModel(a,"handbag", "$100.00", true, "$50"));
+        hori.add(new HorizontalModel(a,"Adidas Shoes", "$100.00", true, "$50"));
+        hori.add(new HorizontalModel(a,"Shoes", "$100.00", false, "$50"));
 
         return hori;
     }
@@ -94,16 +92,16 @@ public class MainActivity extends AppCompatActivity {
 //            "Youtube",
 //            "Twitter"
     };
-    static int[] images = {
-            R.drawable.ic_launcher_background,
-            R.drawable.ic_launcher_foreground,
-            R.drawable.ic_launcher_background,
-            R.drawable.ic_launcher_foreground,
-            R.drawable.ic_launcher_background,
-            R.drawable.ic_launcher_foreground,
-            R.drawable.ic_launcher_background,
-            R.drawable.ic_launcher_foreground,
-            R.drawable.ic_launcher_background,
+    static String[] images = {
+            a,
+            a,
+            a,
+            a,
+            a,
+            a,
+            a,
+            a,
+            a
 //            R.drawable.ic_launcher_foreground,
 //            R.drawable.ic_launcher_background,
 //            R.drawable.ic_launcher_foreground,

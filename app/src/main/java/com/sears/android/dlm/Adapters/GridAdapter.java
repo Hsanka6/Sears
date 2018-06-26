@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.sears.android.dlm.Models.GridModel;
 import com.sears.android.dlm.R;
+import com.sears.android.dlmlibrary.DlmDepartmentView;
 
 import java.util.ArrayList;
 
@@ -21,11 +22,11 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.MyHolder>{
      Context context;
 
      String[] strs;
-     int[] arr;
+     String[] arr;
 
-    public GridAdapter(String[]  strings, int[] ints) {
+    public GridAdapter(String[]  strings, String[] imgs) {
        this.strs = strings;
-       this.arr = ints;
+       this.arr = imgs;
     }
 
     @NonNull
@@ -38,13 +39,8 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.MyHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-//        Log.e("HELLO", "POPOPOP11");
-//        for(int i = 0; i< 5;i++)
-//        {
-//            Log.e("HELLO", "POPOPOP");
-            holder.imageView.setImageResource(arr[position]);
-            holder.textView.setText(strs[position]);
-       // }
+            holder.dep.setImageString(arr[position]);
+            holder.dep.setProductText(strs[position]);
     }
 
     @Override
@@ -53,13 +49,11 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.MyHolder>{
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView textView;
+       DlmDepartmentView dep;
        public MyHolder(View itemView) {
             super(itemView);
 
-            imageView =  itemView.findViewById(R.id.ivGrid);
-            textView =  itemView.findViewById(R.id.tvGrid);
+           dep = itemView.findViewById(R.id.department);
 
         }
     }

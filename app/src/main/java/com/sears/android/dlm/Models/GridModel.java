@@ -1,20 +1,20 @@
 package com.sears.android.dlm.Models;
 
 public class GridModel {
-    private int[] iconId;
+    private String[] icons;
     private String[] nameList;
 
-    public GridModel(int[] iconId, String[] nameList) {
-        this.iconId = iconId;
+    public GridModel(String[] iconId, String[] nameList) {
+        this.icons = iconId;
         this.nameList = nameList;
     }
 
-    public int[] getIconId() {
-        return iconId;
+    public String[] getIconId() {
+        return icons;
     }
 
-    public void setIconId(int[] iconId) {
-        this.iconId = iconId;
+    public void setIconId(String[] icons) {
+        this.icons = icons;
     }
 
     public String[] getNameList() {

@@ -4,22 +4,25 @@ public class HorizontalModel {
 
 
 
-    private int image;
+    private String image;
     private String title;
     private String price;
+    private boolean isReduced;
+    private String reducedPrice;
 
-    public HorizontalModel(int image, String title, String price) {
+    public HorizontalModel(String image, String title, String price, boolean isReduced, String reducedPrice) {
         this.image = image;
         this.title = title;
         this.price = price;
+        this.isReduced = isReduced;
+        this.reducedPrice = reducedPrice;
     }
 
-    public int getImage() {
-
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -37,5 +40,21 @@ public class HorizontalModel {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public boolean isReduced() {
+        return isReduced;
+    }
+
+    public void setReduced(boolean reduced) {
+        isReduced = reduced;
+    }
+
+    public String getReducedPrice() {
+        return reducedPrice;
+    }
+
+    public void setReducedPrice(String reducedPrice) {
+        this.reducedPrice = reducedPrice;
     }
 }
