@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.MyViewHolder> {
 
     ArrayList<CarouselModel> d = new ArrayList<>();
-    String TAG = "DLMERROR";
 
     public CarouselAdapter(ArrayList<CarouselModel> d) {
         this.d = d;
@@ -34,21 +33,17 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.MyView
 
     @Override
     public void onBindViewHolder(final CarouselAdapter.MyViewHolder holder, int position) {
-        Log.e(TAG, String.valueOf(d.get(0).getSampleImages().length));
-
         holder.carouselView.setPageCount((d.get(0).getSampleImages().length));
         holder.carouselView.setImageListener(new ImageListener() {
             @Override
             public void setImageForPosition(int position, ImageView imageView) {
-                Log.e(TAG, String.valueOf(d.get(0).getSampleImages()[0]));
+
                 //imageView.setImageResource(d.get(0).getSampleImages()[position]);
                 //Picasso.get().load(d.get(0).getSampleImages()[position]).into(imageView);
-                Glide.with(holder.carouselView).load(d.get(0).getSampleImages()[position]).into(imageView);
+            Glide.with(holder.carouselView).load(d.get(0).getSampleImages()[position]).into(imageView);
                 //CarouselAdapter.this.notifyDataSetChanged();
             }
         });
-
-        Log.e(TAG, "inn carousel");
     }
 
 
@@ -75,7 +70,6 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.MyView
         ImageListener imageListener = new ImageListener() {
             @Override
             public void setImageForPosition(int position, ImageView imageView) {
-                Log.e("POPO", "JKJJK");
                 imageView.setImageResource(sampleImages[position]);
             }
         };

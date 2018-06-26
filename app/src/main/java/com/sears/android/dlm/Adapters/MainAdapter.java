@@ -32,7 +32,8 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private final int H = 2;
     private final int C = 4;
     private final int G = 3;
-    
+    private final int D = 5;
+
 
 
 
@@ -63,6 +64,10 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 view = inflater.inflate(R.layout.vertical,parent, false);
                 holder = new CarouselViewHolder(view);
                 break;
+            case D:
+                view = inflater.inflate(R.layout.vertical,parent, false);
+                holder = new VerticalViewHolder(view);
+                break;
             default:
                 view = inflater.inflate(R.layout.vertical, parent, false);
                 holder = new HorizontalViewHolder(view);
@@ -81,11 +86,19 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             carouselView((CarouselViewHolder) holder);
         else if(holder.getItemViewType() == G)
             gridView((GridViewHolder) holder);
+        else if(holder.getItemViewType() == D)
+            verticalView1((VerticalViewHolder) holder);
 
     }
 
     private void verticalView(VerticalViewHolder holder){
         VerticalAdapter adapter = new VerticalAdapter(getVert());
+        holder.recyclerView.setLayoutManager(new LinearLayoutManager(c, LinearLayoutManager.VERTICAL,false));
+        holder.recyclerView.setAdapter(adapter);
+    }
+
+    private void verticalView1(VerticalViewHolder holder){
+        VerticalAdapter adapter = new VerticalAdapter(getVert1());
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(c, LinearLayoutManager.VERTICAL,false));
         holder.recyclerView.setAdapter(adapter);
     }
@@ -132,9 +145,13 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             return C;
         }
-        if((position) == 3)
+        if((position) == 4)
         {
             return G;
+        }
+        if((position) == 3)
+        {
+            return D;
         }
         return -1;
     }
