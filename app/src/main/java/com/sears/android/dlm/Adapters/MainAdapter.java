@@ -18,6 +18,7 @@ import com.synnapps.carouselview.CarouselView;
 
 import java.util.ArrayList;
 
+import static com.sears.android.dlm.MainActivity.getBannerImages;
 import static com.sears.android.dlm.MainActivity.getHori;
 import static com.sears.android.dlm.MainActivity.getHori1;
 import static com.sears.android.dlm.MainActivity.getVert;
@@ -121,7 +122,7 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
     private void verticalView2(VerticalViewHolder holder){
-        VerticalAdapter adapter = new VerticalAdapter(getVer());
+        VerticalAdapter adapter = new VerticalAdapter(getBannerImages());
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(c, LinearLayoutManager.VERTICAL,false));
         holder.recyclerView.setAdapter(adapter);
     }
