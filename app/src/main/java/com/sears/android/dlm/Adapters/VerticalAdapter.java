@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.sears.android.dlm.Models.VerticalModel;
 import com.sears.android.dlm.R;
 
@@ -27,7 +28,9 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.im.setImageResource(d.get(position).getImage());
+        //holder.im.setImageResource(d.get(position).getImage());
+
+        Glide.with(holder.im).load(d.get(position).getImage()).into(holder.im);
         if(d.get(position).isNoTitle())
         {
             holder.title.setText(d.get(position).getTitle());

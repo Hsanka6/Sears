@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     GridView gridView;
     //ArrayList<View> views = new ArrayList<>();
     static String a = "http://i.imgur.com/DvpvklR.png";
-    static String[] sampleImages = {a, a, a};
+    static String[] sampleImages = {"http://s.shld.net/is/image/Sears/20180624_s_HP_Mobile_hero1_HA_v1", "http://s.shld.net/is/image/Sears/20180624_s_HP_Mobile_hero2_Mattress", "http://s.shld.net/is/image/Sears/20180624_s_HP_Mobile_hero3_CLO_v1"};
     ImageView iv;
 
 
@@ -127,18 +127,18 @@ public class MainActivity extends AppCompatActivity {
     }
     public static ArrayList<VerticalModel> getVert() {
         ArrayList<VerticalModel>vert = new ArrayList<>();
-        vert.add(new VerticalModel(R.mipmap.ic_launcher,"", false));
-        vert.add(new VerticalModel(R.mipmap.ic_launcher,"", false));
-        vert.add(new VerticalModel(R.mipmap.ic_launcher,"Sponsored", true));
+        vert.add(new VerticalModel(b,"", false));
+        vert.add(new VerticalModel(b,"", false));
+        vert.add(new VerticalModel(b,"Sponsored", true));
 
         return vert;
     }
-
+    public static String b = "https://s.shld.net/is/image/Sears/20180610_s_HP_Mobile_sec_IVPU";
     public static ArrayList<VerticalModel> getVert1() {
         ArrayList<VerticalModel>vert = new ArrayList<>();
-        vert.add(new VerticalModel(R.mipmap.ic_launcher,"", false));
-        vert.add(new VerticalModel(R.mipmap.ic_launcher,"", false));
-        vert.add(new VerticalModel(R.mipmap.ic_launcher,"Department", true));
+        vert.add(new VerticalModel(b,"", false));
+        vert.add(new VerticalModel(b,"", false));
+        vert.add(new VerticalModel(b,"Department", true));
 
         return vert;
     }

@@ -2,15 +2,15 @@ package com.sears.android.dlm.Models;
 
 public class VerticalModel {
 
-    private int image;
+    private String image;
     private String title;
     private boolean noTitle;
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public VerticalModel(int image, String title, boolean noTitle) {
+    public VerticalModel(String image, String title, boolean noTitle) {
         this.image = image;
         this.title = title;
         this.noTitle = noTitle;
@@ -33,7 +33,7 @@ public class VerticalModel {
         this.noTitle = noTitle;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
