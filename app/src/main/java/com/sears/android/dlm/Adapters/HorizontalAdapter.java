@@ -35,7 +35,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.My
 //        holder.im.setImageResource(d.get(position).getImage());
         holder.dlm.setProductText(d.get(position).getTitle());
         holder.dlm.setImageString(d.get(position).getImage());
-        holder.dlm.setPrices(d.get(position).getPrice(),d.get(position).isReduced(),d.get(position).getReducedPrice() );
+        holder.dlm.setPrices("$"+ d.get(position).getPrice(),d.get(position).isReduced(),"$"+ d.get(position).getReducedPrice() );
 
     }
 

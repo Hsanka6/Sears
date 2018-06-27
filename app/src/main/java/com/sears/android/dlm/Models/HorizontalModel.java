@@ -9,6 +9,16 @@ public class HorizontalModel {
     private String price;
     private boolean isReduced;
     private String reducedPrice;
+    private String rating;
+
+    public HorizontalModel(String image, String title, String price, boolean isReduced, String reducedPrice, String rating) {
+        this.image = image;
+        this.title = title;
+        this.price = price;
+        this.isReduced = isReduced;
+        this.reducedPrice = reducedPrice;
+        this.rating = rating;
+    }
 
     public HorizontalModel(String image, String title, String price, boolean isReduced, String reducedPrice) {
         this.image = image;

@@ -17,13 +17,15 @@ import com.sears.android.dlm.R;
 import com.synnapps.carouselview.CarouselView;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import static com.sears.android.dlm.MainActivity.getBannerImages;
-import static com.sears.android.dlm.MainActivity.getHori;
-import static com.sears.android.dlm.MainActivity.getHori1;
+
+import static com.sears.android.dlm.MainActivity.getRecommendedImages;
+import static com.sears.android.dlm.MainActivity.getSponsoredImages;
 import static com.sears.android.dlm.MainActivity.getVert;
 import static com.sears.android.dlm.MainActivity.getVert1;
-import static com.sears.android.dlm.MainActivity.getVer;
+
 import static com.sears.android.dlm.MainActivity.getCar;
 import static com.sears.android.dlm.MainActivity.getGri;
 
@@ -31,6 +33,8 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private Context c;
     private ArrayList<Object> items;
+    private int bannerSize;
+    private Vector<String> positions;
     private final int V = 1;
     private final int H = 2;
     private final int C = 4;
@@ -43,9 +47,11 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
 
-    public MainAdapter(Context c, ArrayList<Object> items) {
+    public MainAdapter(Context c, ArrayList<Object> items, int bannerSize, Vector<String> positions) {
         this.c = c;
+        this.bannerSize = bannerSize;
         this.items = items;
+        this.positions = positions;
     }
 
     @Override
@@ -142,13 +148,13 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
     private void horizontalView1(HorizontalViewHolder holder){
-        HorizontalAdapter adapter = new HorizontalAdapter(getHori1());
+        HorizontalAdapter adapter = new HorizontalAdapter(getRecommendedImages());
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(c, LinearLayoutManager.HORIZONTAL,false));
         holder.recyclerView.setAdapter(adapter);
     }
 
     private void horizontalView(HorizontalViewHolder holder){
-        HorizontalAdapter adapter = new HorizontalAdapter(getHori());
+        HorizontalAdapter adapter = new HorizontalAdapter(getSponsoredImages());
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(c, LinearLayoutManager.HORIZONTAL,false));
         holder.recyclerView.setAdapter(adapter);
     }

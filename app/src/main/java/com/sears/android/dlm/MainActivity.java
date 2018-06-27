@@ -2,28 +2,25 @@ package com.sears.android.dlm;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.sears.android.dlm.Adapters.GridAdapter;
 import com.sears.android.dlm.Adapters.MainAdapter;
 import com.sears.android.dlm.Models.CarouselModel;
 import com.sears.android.dlm.Models.HorizontalModel;
 import com.sears.android.dlm.Models.VerticalModel;
 import com.sears.android.dlm.Models.GridModel;
 import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -33,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     static String a = "http://i.imgur.com/DvpvklR.png";
     static String[] sampleImages = {"http://s.shld.net/is/image/Sears/20180624_s_HP_Mobile_hero2_Mattress", "http://s.shld.net/is/image/Sears/20180624_s_HP_Mobile_hero3_CLO_v1"};
     ImageView iv;
+    int bannerSize = 0;
+    Vector<String> positions = new Vector<>();
     String jsonString = "{\n" +
             "\t\"component\": [{\n" +
             "\t\t\"type\": \"carousel\",\n" +
@@ -74,9 +73,84 @@ public class MainActivity extends AppCompatActivity {
             "\t\t\t\"title\": \"Recommended Items\"\n" +
             "\t\t}]\n" +
             "\t}, {\n" +
-            "\t\t\"type\": \"gallery\"\n" +
+            "\t\t\"type\": \"recommendedProducts\",\n" +
+            "\t\t\"data\": [{\n" +
+            "\t\t\t\"clickURL\": \"\",\n" +
+            "\t\t\t\"image\": \"\",\n" +
+            "\t\t\t\"price\": \"80\",\n" +
+            "\t\t\t\"isReduced\": false,\n" +
+            "\t\t\t\"reducedPrice\": \"40\",\n" +
+            "\t\t\t\"rating\": \"4\",\n" +
+            "\t\t\t\"title\": \"Nike Shoes\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"clickURL\": \"\",\n" +
+            "\t\t\t\"image\": \"\",\n" +
+            "\t\t\t\"price\": \"90\",\n" +
+            "\t\t\t\"isReduced\": true,\n" +
+            "\t\t\t\"reducedPrice\": \"30\",\n" +
+            "\t\t\t\"rating\": \"3\",\n" +
+            "\t\t\t\"title\": \"Adidas Shoes\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"clickURL\": \"\",\n" +
+            "\t\t\t\"image\": \"\",\n" +
+            "\t\t\t\"price\": \"80\",\n" +
+            "\t\t\t\"isReduced\": true,\n" +
+            "\t\t\t\"reducedPrice\": \"40\",\n" +
+            "\t\t\t\"rating\": \"4\",\n" +
+            "\t\t\t\"title\": \"Nike Shoes\"\n" +
+            "\t\t}\n" +
+            "\t\t]\n" +
             "\t}, {\n" +
-            "\t\t\"type\": \"grid\"\n" +
+            "\t\t\"type\": \"sponsoredProducts\",\n" +
+            "\t\t\"data\": [{\n" +
+            "\t\t\t\"clickURL\": \"\",\n" +
+            "\t\t\t\"image\": \"\",\n" +
+            "\t\t\t\"price\": \"56\",\n" +
+            "\t\t\t\"isReduced\": false,\n" +
+            "\t\t\t\"reducedPrice\": \"43\",\n" +
+            "\t\t\t\"title\": \"Crafstmen Hammer\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"clickURL\": \"\",\n" +
+            "\t\t\t\"image\": \"\",\n" +
+            "\t\t\t\"price\": \"56\",\n" +
+            "\t\t\t\"isReduced\": true,\n" +
+            "\t\t\t\"reducedPrice\": \"43\",\n" +
+            "\t\t\t\"title\": \"Hammer\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"clickURL\": \"\",\n" +
+            "\t\t\t\"image\": \"\",\n" +
+            "\t\t\t\"price\": \"56\",\n" +
+            "\t\t\t\"isReduced\": false,\n" +
+            "\t\t\t\"reducedPrice\": \"43\",\n" +
+            "\t\t\t\"title\": \"Wrench\"\n" +
+            "\t\t}]\n" +
+            "\t}, {\n" +
+            "\n" +
+            "\t\t\"type\": \"grid\",\n" +
+            "\t\t\"data\": [{\n" +
+            "\t\t\t\"image\": \"\",\n" +
+            "\t\t\t\"title\": \"Shoes\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"image\": \"\",\n" +
+            "\t\t\t\"title\": \"Furniture\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"image\": \"\",\n" +
+            "\t\t\t\"title\": \"Men\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"image\": \"\",\n" +
+            "\t\t\t\"title\": \"Women\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"image\": \"\",\n" +
+            "\t\t\t\"title\": \"Toys\"\n" +
+            "\t\t}]\n" +
             "\t}]\n" +
             "}";
 
@@ -91,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         getData(jsonString);
-        recyclerView.setAdapter(new MainAdapter(this,getObject()));
+        recyclerView.setAdapter(new MainAdapter(this,getObject(),bannerSize,positions));
 
 
 
@@ -121,11 +195,9 @@ public class MainActivity extends AppCompatActivity {
         Log.e("SIZE", String.valueOf(bannerObject));
         try {
             JSONArray imgdata = bannerObject.getJSONArray("data");
-            Log.e("POPOPOP", String.valueOf(imgdata));
             for(int i =0;i< imgdata.length();i++){
 
                 JSONObject img1 = (JSONObject) imgdata.get(i);
-                Log.e("IMG2", String.valueOf(imgs1));
                 imgs1.add(new VerticalModel(img1.getString("image"),img1.getString("title"), img1.getBoolean("isTitle")));
             }
         } catch (JSONException b) {
@@ -134,14 +206,52 @@ public class MainActivity extends AppCompatActivity {
         return imgs1;
     }
 
+    static JSONObject recommendedObject = new JSONObject();
+
+    public static ArrayList<HorizontalModel> getRecommendedImages(){
+        ArrayList<HorizontalModel> imgs2 = new ArrayList<>();
+        Log.e("recommend", String.valueOf(recommendedObject));
+        try {
+            JSONArray imgsdata = recommendedObject.getJSONArray("data");
+            for(int i = 0; i < imgsdata.length();i++){
+
+                JSONObject img2 = (JSONObject) imgsdata.get(i);
+                imgs2.add(new HorizontalModel(img2.getString("image"),img2.getString("title"), img2.getString("price"), img2.getBoolean("isReduced"), img2.getString("reducedPrice"), img2.getString("rating")));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return imgs2;
+    }
+
+    static JSONObject sponsoredObject = new JSONObject();
+
+    public static ArrayList<HorizontalModel> getSponsoredImages(){
+        ArrayList<HorizontalModel> imgs3 = new ArrayList<>();
+        Log.e("sponsored", String.valueOf(sponsoredObject));
+        try {
+            JSONArray imagedata = sponsoredObject.getJSONArray("data");
+            for(int i = 0; i < imagedata.length();i++){
+
+                JSONObject img3 = (JSONObject) imagedata.get(i);
+                imgs3.add(new HorizontalModel(img3.getString("image"),img3.getString("title"), img3.getString("price"), img3.getBoolean("isReduced"), img3.getString("reducedPrice")));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return imgs3;
+    }
+
+
     ArrayList<VerticalModel> vms = new ArrayList<>();
 
     private ArrayList<Object> getObject() {
         objects.add(getCar().get(0));
-        objects.add(getBannerImages().get(0));
-        objects.add(getHori1().get(0));
+        objects.add(getBannerImages());
+        objects.add(getRecommendedImages());
         objects.add(getVert().get(0));
-        objects.add(getHori().get(0));
+        objects.add(getSponsoredImages().get(0));
         objects.add(getVert1().get(0));
         objects.add(getGri().get(0));
         return objects;
@@ -149,25 +259,25 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public static ArrayList<HorizontalModel> getHori() {
-        ArrayList<HorizontalModel>hori = new ArrayList<>();
-        hori.add(new HorizontalModel(a,"Shoes", "$100.00", false, "$50"));
-        hori.add(new HorizontalModel(a,"handbag", "$100.00", true, "$50"));
-        hori.add(new HorizontalModel(a,"Adidas Shoes", "$100.00", true, "$50"));
-        hori.add(new HorizontalModel(a,"Shoes", "$100.00", false, "$50"));
-
-        return hori;
-    }
-
-    public static ArrayList<HorizontalModel> getHori1() {
-        ArrayList<HorizontalModel>hori = new ArrayList<>();
-        hori.add(new HorizontalModel(a,"Jeans", "$100.00", false, "$50"));
-        hori.add(new HorizontalModel(a,"Shirts", "$100.00", true, "$50"));
-        hori.add(new HorizontalModel(a,"Long Sleeves", "$100.00", true, "$50"));
-        hori.add(new HorizontalModel(a,"Belts", "$100.00", false, "$50"));
-
-        return hori;
-    }
+//    public static ArrayList<HorizontalModel> getHori() {
+//        ArrayList<HorizontalModel>hori = new ArrayList<>();
+//        hori.add(new HorizontalModel(a,"Shoes", "$100.00", false, "$50"));
+//        hori.add(new HorizontalModel(a,"handbag", "$100.00", true, "$50"));
+//        hori.add(new HorizontalModel(a,"Adidas Shoes", "$100.00", true, "$50"));
+//        hori.add(new HorizontalModel(a,"Shoes", "$100.00", false, "$50"));
+//
+//        return hori;
+//    }
+//
+//    public static ArrayList<HorizontalModel> getHori1() {
+//        ArrayList<HorizontalModel>hori = new ArrayList<>();
+//        hori.add(new HorizontalModel(a,"Jeans", "$100.00", false, "$50"));
+//        hori.add(new HorizontalModel(a,"Shirts", "$100.00", true, "$50"));
+//        hori.add(new HorizontalModel(a,"Long Sleeves", "$100.00", true, "$50"));
+//        hori.add(new HorizontalModel(a,"Belts", "$100.00", false, "$50"));
+//
+//        return hori;
+//    }
 
     static String[] values = {
             "Java",
@@ -179,12 +289,7 @@ public class MainActivity extends AppCompatActivity {
             "HTML5",
             "Javascript",
             "MySQL",
-//            "Python",
-//            "Swift",
-//            "WordPress",
-//            "Facebook",
-//            "Youtube",
-//            "Twitter"
+
     };
     static String[] images = {
             a,
@@ -196,12 +301,6 @@ public class MainActivity extends AppCompatActivity {
             a,
             a,
             a
-//            R.drawable.ic_launcher_foreground,
-//            R.drawable.ic_launcher_background,
-//            R.drawable.ic_launcher_foreground,
-//            R.drawable.ic_launcher_background,
-//            R.drawable.ic_launcher_foreground,
-//            R.drawable.ic_launcher_background,
     };
 
 
@@ -219,12 +318,12 @@ public class MainActivity extends AppCompatActivity {
         car.add(new CarouselModel(sampleImages));
         return car;
     }
-    public static ArrayList<VerticalModel> getVer() {
-        ArrayList<VerticalModel>vert = new ArrayList<>();
-        vert.add(new VerticalModel(b,"Recommended Items", true));
-
-        return vert;
-    }
+//    public static ArrayList<VerticalModel> getVer() {
+//        ArrayList<VerticalModel>vert = new ArrayList<>();
+//        vert.add(new VerticalModel(b,"Recommended Items", true));
+//
+//        return vert;
+//    }
 
     public static ArrayList<VerticalModel> getVert() {
         ArrayList<VerticalModel>vert = new ArrayList<>();
@@ -243,6 +342,9 @@ public class MainActivity extends AppCompatActivity {
 
         return vert;
     }
+
+    JSONArray bannerObjects = new JSONArray();
+
     public void getData(String json) {
         try {
             Log.e("getData", String.valueOf("data1"));
@@ -253,15 +355,26 @@ public class MainActivity extends AppCompatActivity {
 
             for(int i =0; i < objectArray.length();i++)
             {
-
                 JSONObject component = (JSONObject) objectArray.get(i);
+                positions.add(component.getString("type"));
                 if(component.getString("type").equals("carousel")){
                     carouselObject = (JSONObject) objectArray.get(i);
                     Log.e("JSONINSIDE", String.valueOf(component));
                 }
-                else if(component.getString("type").equals("banner1")){
+                else if(component.getString("type").equals("banner")){
+                    bannerObjects.put(objectArray.get(i));
                     bannerObject = (JSONObject) objectArray.get(i);
+                    bannerSize +=1;
+
                     Log.e("banner", String.valueOf(component));
+                }
+                else if(component.getString("type").equals("recommendedProducts")){
+                    recommendedObject = (JSONObject) objectArray.get(i);
+                    Log.e("rec item", String.valueOf(component));
+                }
+                else if(component.getString("type").equals("sponsoredProducts")){
+                    sponsoredObject = (JSONObject) objectArray.get(i);
+                    Log.e("spon item", String.valueOf(component));
                 }
             }
             String[]strs = new String[getCarouselImages(carouselObject).size()];
